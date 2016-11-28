@@ -1,0 +1,56 @@
+demo2
+========================================================
+author: 
+date: 
+autosize: true
+
+Introduction
+========================================================
+
+This presentation is aiming for porviding an example on how to claculate NDVI using landsate 8 data.
+
+work flow
+========================================================
+
+- instal needed packages
+- load raster layers
+- create layer stack
+- Calculate NDVI
+
+instal needed packages
+========================================================
+
+library(raster)
+
+library(cluster)
+
+library(gtools)
+
+
+load raster layers
+========================================================
+setwd()
+helps chosing and loading raster files easily
+
+RED_Band<-raster("red band layer")
+
+GREEN_Band<-raster("green band layer")
+
+BLUE_Band<-raster("blue band layer")
+
+IR_Band<-raster("infrared band layer")
+
+-create layer stack
+layer_stack<-stack(RED_Band,GREEN_Band,BLUE_Band,IR_Band)
+
+Calculate NDVI
+========================================================
+
+NDVI<-(layer_stack$IR_Band-layer_stack$RED_Band)/(layer_stack$IR_Band+layer_stack$RED_B)
+
+```{r}
+library(raster)
+NDVI<-raster("NDVI.tif")
+plot(NDVI)
+```
+
